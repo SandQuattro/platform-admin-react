@@ -2,17 +2,16 @@
 
 import React from 'react';
 import {Admin, Resource, ListGuesser} from 'react-admin';
-import Dashboard from './Dashboard';
 import authProvider from './Auth/authProvider';
-import simpleRestProvider from 'ra-data-simple-rest';
-import Header from "./Components/Header";
-//const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
+import dataProvider from './DataProviders/SsoDataProvider';
+import {UserList, UserCreate, UserEdit} from "./Pages/User";
+
 const App = () => (
 
-    <Admin dashboard={Dashboard} authProvider={authProvider}
-           dataProvider={simpleRestProvider('https://sso-authorization.herokuapp.com/')}>
-        <Resource name="users" list={ListGuesser}/>
-        <Resource name="events" list={ListGuesser}/>
+    <Admin authProvider={authProvider} dataProvider={dataProvider}>
+        <Resource name="events" list={ListGuesser} />
+        <Resource name="users" list={UserList} show={UserList} create={UserCreate} edit={UserEdit}/>
     </Admin>
 );
+
 export default App;
