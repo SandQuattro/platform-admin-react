@@ -1,16 +1,16 @@
 // rcc - creates new Component from Template
 
 import React from 'react';
-import {Admin, Resource, ListGuesser} from 'react-admin';
+import {Admin, ListGuesser, Resource} from 'react-admin';
 import authProvider from './Auth/authProvider';
-import dataProvider from './DataProviders/SsoDataProvider';
-import {UserList, UserCreate, UserEdit} from "./Pages/User";
+import {UserCreate, UserEdit, UserList} from "./Pages/Users";
+import {EventsList} from "./Pages/Events";
+import dataProvider from './DataProviders/DataProvider';
 
 const App = () => (
-
     <Admin authProvider={authProvider} dataProvider={dataProvider}>
-        <Resource name="events" list={ListGuesser} />
-        <Resource name="users" list={UserList} show={UserList} create={UserCreate} edit={UserEdit}/>
+        <Resource name="users" options={{ label: 'Users' }} list={UserList} edit={UserEdit} create={UserCreate}/>
+        <Resource name="events" options={{ label: 'Events' }} list={ListGuesser} />
     </Admin>
 );
 

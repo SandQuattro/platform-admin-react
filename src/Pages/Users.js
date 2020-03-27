@@ -1,54 +1,52 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 
 import {
+    ArrayField,
+    BooleanField,
+    BooleanInput,
     Create,
-    Edit,
-    SimpleForm,
-    TextInput,
-    List,
-    DateInput,
-    ReferenceManyField,
     Datagrid,
-    TextField,
     DateField,
-    EditButton
+    DateInput,
+    Edit,
+    EditButton,
+    Filter,
+    List,
+    ReferenceManyField,
+    required,
+    SimpleForm,
+    TextField,
+    TextInput
 } from 'react-admin';
+
 import RichTextInput from 'ra-input-rich-text';
-import {required} from 'react-admin';
-import {useDataProvider, Loading, Error} from 'react-admin';
 
-export const UserList = (props) => {
-    const dataProvider = useDataProvider();
-    const [user, setUser] = useState();
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState();
-    useEffect(() => {
-        dataProvider.getList('users/all')
-            .then(({data}) => {
-                setUser(data);
-                setLoading(false);
-            })
-            .catch(error => {
-                setError(error);
-                setLoading(false);
-            })
-    }, []);
+const UserFilter = (props) => (
+    <Filter {...props}>
+        <TextInput label="Search" source="q" alwaysOn />
+        <BooleanInput source="is_published" alwaysOn />
+        <TextInput source="title" defaultValue="Hello, World!" />
+    </Filter>
+);
 
-    if (loading) return <Loading/>;
-    if (error) return <Error/>;
-    if (!user) return null;
+export const UserList = (props) => (
 
-    return (
-        <List {...props}>
+    <List {...props} filters={<UserFilter />}>
+        <Datagrid rowClick="edit">
+            <TextField source="id" />
+            <TextField source="login" />
+            <TextField source="firstName" />
+            <TextField source="lastName" />
+            <ArrayField source="roles">
             <Datagrid>
-                <TextField source="id"/>
-                <TextField source="title"/>
-                <TextField source="body"/>
-                <EditButton/>
+                <TextField source="id" />
+                <TextField source="name" />
+                <BooleanField source="admin" />
             </Datagrid>
-        </List>
-    )
-};
+        </ArrayField>
+        </Datagrid>
+    </List>
+)
 
 export const UserCreate = (props) => (
     <Create {...props}>
