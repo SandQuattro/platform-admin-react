@@ -23,8 +23,6 @@ export default {
             apiUrl = 'https://sso-authorization.herokuapp.com';
         }
 
-        resource = resource + '/all';
-
         const { page, perPage } = params.pagination;
         const { field, order } = params.sort;
         const query = {
@@ -35,9 +33,9 @@ export default {
         const url = `${apiUrl}/${resource}?${stringify(query)}`;
         console.log(url);
 
-        return httpClient(url).then(({json}) => ({
-            data: json,
-            total: json.length
+        return httpClient(url).then(({ json }) => ({
+            data: json.data,
+            total: json.total
         }));
     },
 

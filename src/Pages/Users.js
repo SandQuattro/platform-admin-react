@@ -3,7 +3,6 @@ import React from 'react';
 import {
     ArrayField,
     BooleanField,
-    BooleanInput,
     Create,
     Datagrid,
     DateField,
@@ -24,7 +23,6 @@ import RichTextInput from 'ra-input-rich-text';
 const UserFilter = (props) => (
     <Filter {...props}>
         <TextInput label="Search" source="q" alwaysOn />
-        <BooleanInput source="is_published" alwaysOn />
         <TextInput source="title" defaultValue="Hello, World!" />
     </Filter>
 );

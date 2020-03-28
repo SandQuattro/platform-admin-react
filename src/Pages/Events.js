@@ -1,36 +1,57 @@
 import React from 'react';
-import { Show, TabbedShowLayout, Tab, NumberField, BooleanField, ReferenceManyField, Datagrid, TextField, DateField, EditButton, RichTextField } from 'react-admin';
+import {
+    Datagrid,
+    DateField,
+    DateInput,
+    Edit,
+    EditButton,
+    Filter,
+    List,
+    ReferenceManyField,
+    required,
+    SimpleForm,
+    TextField,
+    TextInput
+} from 'react-admin';
+import RichTextInput from "ra-input-rich-text";
 
-const EventsList = (props) => (
-
-    <Show {...props}>
-        <TabbedShowLayout>
-            <Tab label="summary">
-                <TextField label="Id" source="id" />
-                <TextField source="title" />
-                <TextField source="teaser" />
-            </Tab>
-            <Tab label="body" path="body">
-                <RichTextField source="body" addLabel={false} />
-            </Tab>
-            <Tab label="Miscellaneous" path="miscellaneous">
-                <TextField label="Password (if protected post)" source="password" type="password" />
-                <DateField label="Publication date" source="published_at" />
-                <NumberField source="average_note" />
-                <BooleanField label="Allow comments?" source="commentable" defaultValue />
-                <TextField label="Nb views" source="views" />
-            </Tab>
-            <Tab label="comments" path="comments">
-                <ReferenceManyField reference="comments" target="post_id" addLabel={false}>
-                    <Datagrid>
-                        <TextField source="body" />
-                        <DateField source="created_at" />
-                        <EditButton />
-                    </Datagrid>
-                </ReferenceManyField>
-            </Tab>
-        </TabbedShowLayout>
-    </Show>
-
+const EventFilter = (props) => (
+    <Filter {...props}>
+        <TextInput label="Search" source="q" alwaysOn/>
+        <TextInput source="title" defaultValue="Hello, World!"/>
+    </Filter>
 );
-export default EventsList;
+
+export const EventList = props => (
+    <List {...props} filters={<EventFilter />}>
+        <Datagrid rowClick="edit">
+            <TextField source="id" />
+            <TextField source="name" />
+            <TextField source="descriptionShort" />
+            <TextField source="descriptionLong" />
+            <DateField source="dateFrom" />
+            <DateField source="dateTo" />
+            <TextField source="logoUrl" />
+            <TextField source="eventMaterials" />
+        </Datagrid>
+    </List>
+);
+
+export const EventEdit = (props) => (
+    <Edit {...props}>
+        <SimpleForm>
+            <TextInput disabled label="Id" source="id"/>
+            <TextInput source="title" validate={required()}/>
+            <TextInput multiline source="teaser" validate={required()}/>
+            <RichTextInput source="body" validate={required()}/>
+            <DateInput label="Publication date" source="published_at"/>
+            <ReferenceManyField label="Comments" reference="comments" target="post_id">
+                <Datagrid>
+                    <TextField source="body"/>
+                    <DateField source="created_at"/>
+                    <EditButton/>
+                </Datagrid>
+            </ReferenceManyField>
+        </SimpleForm>
+    </Edit>
+);
