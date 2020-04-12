@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import classes from './Drawer.css'
-import Backdrop from "../../UI/Backdrop/Backdrop";
+import './Drawer.css'
+import Backdrop from "../../Menu/Backdrop/Backdrop";
 import {NavLink} from "react-router-dom";
 
 const links = [
-    {to: "/", label: "Список", exact: true},
+    {to: "/", label: "Домашняя страница", exact: true},
     {to: "/users", label: "Пользователи", exact: true}
     ];
 
@@ -16,7 +16,7 @@ class Drawer extends Component {
                 <li key={index}>
                     <NavLink to={link.to}
                              exact={link.exact}
-                             activeClassName={classes.active}
+                             activeClassName={'active'}
                              onClick={this.props.onClose}
                     >{link.label}
                     </NavLink>
@@ -26,10 +26,10 @@ class Drawer extends Component {
     }
 
     render() {
-        const cls = [classes.Drawer];
+        const cls = ['Drawer'];
 
         if (!this.props.isOpen) {
-            cls.push(classes.close)
+            cls.push('close')
         }
 
         return (
