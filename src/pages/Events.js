@@ -13,7 +13,6 @@ import {
     TextField,
     TextInput
 } from 'react-admin';
-import RichTextInput from "ra-input-rich-text";
 
 const EventFilter = (props) => (
     <Filter {...props}>
@@ -23,18 +22,21 @@ const EventFilter = (props) => (
 );
 
 export const EventList = props => (
-    <List {...props} filters={<EventFilter />}>
-        <Datagrid rowClick="edit">
-            <TextField source="id" />
-            <TextField source="name" />
-            <TextField source="descriptionShort" />
-            <TextField source="descriptionLong" />
-            <DateField source="dateFrom" />
-            <DateField source="dateTo" />
-            <TextField source="logoUrl" />
-            <TextField source="eventMaterials" />
-        </Datagrid>
-    </List>
+    <div className="ui raised very padded text container segment">
+        <h2 className="ui header">Dogs Roles with Humans</h2>
+        <List {...props} filters={<EventFilter />}>
+            <Datagrid rowClick="edit">
+                <TextField source="id" />
+                <TextField source="name" />
+                <TextField source="descriptionShort" />
+                <TextField source="descriptionLong" />
+                <DateField source="dateFrom" />
+                <DateField source="dateTo" />
+                <TextField source="logoUrl" />
+                <TextField source="eventMaterials" />
+            </Datagrid>
+        </List>
+    </div>
 );
 
 export const EventEdit = (props) => (
@@ -43,7 +45,6 @@ export const EventEdit = (props) => (
             <TextInput disabled label="Id" source="id"/>
             <TextInput source="title" validate={required()}/>
             <TextInput multiline source="teaser" validate={required()}/>
-            <RichTextInput source="body" validate={required()}/>
             <DateInput label="Publication date" source="published_at"/>
             <ReferenceManyField label="Comments" reference="comments" target="post_id">
                 <Datagrid>

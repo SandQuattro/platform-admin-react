@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import './Drawer.css'
-import Backdrop from "../../Menu/Backdrop/Backdrop";
+import Dimmer from "../Dimmer/Dimmer";
 import {NavLink} from "react-router-dom";
 
 const links = [
-    {to: "/", label: "Домашняя страница", exact: true},
-    {to: "/users", label: "Пользователи", exact: true}
+    {to: "/users", label: "Пользователи", exact: true},
+    {to: "/events", label: "Мероприятия", exact: true}
     ];
 
 class Drawer extends Component {
@@ -39,7 +39,7 @@ class Drawer extends Component {
                         {this.renderLinks()}
                     </ul>
                 </nav>
-                {this.props.isOpen ? <Backdrop onClick={this.props.onClose}/> : null}
+                {this.props.isOpen ? <Dimmer onClick={this.props.onClose}/> : null}
             </React.Fragment>
         )
 
