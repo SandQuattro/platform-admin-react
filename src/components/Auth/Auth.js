@@ -4,6 +4,7 @@ import './Auth.css'
 import GoogleAuth from "./OAuth/GoogleAuth";
 import {connect} from 'react-redux'
 import {signIn, signOut} from '../../actions/googleAuth/googleAuth'
+import FacebookAuth from "./OAuth/FacebookAuth";
 
 class Auth extends React.Component {
 
@@ -104,10 +105,11 @@ class Auth extends React.Component {
                     </button>
                 </form>
                 <GoogleAuth/>
+                <FacebookAuth/>
             </div>
         );
     }
 
 }
 
-export default connect(null, { signIn, signOut })(Auth);
+export default connect(null, {signIn, signOut})(Auth);

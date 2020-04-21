@@ -24,7 +24,7 @@ class Layout extends React.Component {
     render() {
 
         return (
-            <div className={this.state.menu ? 'Layout' : 'Layout moved'}>
+            <div className={!this.state.menu ? 'Layout' : 'Layout moved'}>
                 <Drawer isOpen={this.state.menu}
                         onClose={this.menuCloseHandler}/>
                 <MenuToggle onToggle={this.toggleMenuHandler} isOpen={this.state.menu}/>

@@ -6,17 +6,17 @@ import {EventList} from '../../pages/Events'
 import Auth from "../Auth/Auth";
 
 const App = () => (
-        <BrowserRouter>
-            <Layout>
-                {/* Routing */}
-                <Switch>
-                    <Route path="/" exact component={Auth}/>
-                    <Route path="/users" exact component={Users}/>
-                    <Route path="/events" exact component={EventList}/>
-                    <Redirect to="/"/>
-                </Switch>
-            </Layout>
-        </BrowserRouter>
+    <BrowserRouter>
+        <Layout>
+            {/* Routing */}
+            <Switch>
+                <Route path="/" exact component={Auth}/>
+                <Route path="/users" component={Users}/>
+                <Route path="/events" component={EventList}/>
+                <Redirect to="/"/>
+            </Switch>
+        </Layout>
+    </BrowserRouter>
 );
 
 export default App;
