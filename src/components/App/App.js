@@ -1,11 +1,11 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Layout from "../../hoc/Layout/Layout";
-import UsersList from '../../pages/Users/UsersList'
+import UsersList from '../../pages/Users/UsersList/UsersList'
 import {EventList} from '../../pages/Events/Events'
 import Auth from "../Auth/Auth";
 import UsersCreate from "../../pages/Users/UsersCreate/UsersCreate";
-import UsersEdit from "../../pages/Users/UsersEdit";
+import UsersEdit from "../../pages/Users/UsersEdit/UsersEdit";
 import UsersDelete from "../../pages/Users/UsersDelete";
 import UsersShow from "../../pages/Users/UsersShow";
 

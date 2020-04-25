@@ -41,7 +41,7 @@ class Auth extends React.Component {
                     formClasses: this.state.formClasses + ' success'
                 });
 
-                this.props.signIn();
+                this.props.signIn(response.data);
                 localStorage.setItem('token', response.data.token);
                 history.push('/users');
             }

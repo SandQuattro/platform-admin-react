@@ -12,7 +12,7 @@ const Header = (props) => {
                 </Link>
             </div>
             <div className="ui right floated header">
-                <img alt="avatar" className="ui avatar image" src={props.avatar}/>
+                {props.auth.avatar ? <img alt="avatar" className="ui avatar image" src={props.auth.avatar}/> : ''}
                 <span>Username</span>
                 <Link to="/" className="item">
                     Profile
@@ -24,7 +24,7 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        avatar: state.auth.userLogo
+        auth: state.auth
     }
 }
 
