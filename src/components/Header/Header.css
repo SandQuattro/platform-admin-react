@@ -1,4 +1,7 @@
 .Header {
+    align-items: center;
+    justify-content: center;
+    align-content: center;
     width: 1400px;
     margin-left: auto!important;
     margin-right: auto!important;

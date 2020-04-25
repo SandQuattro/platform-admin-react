@@ -3,7 +3,8 @@ import ssoAuth from '../../api/sso-auth'
 import './Auth.css'
 import GoogleAuth from "./OAuth/GoogleAuth";
 import {connect} from 'react-redux'
-import {signIn, signOut} from '../../actions/googleAuth/googleAuth'
+import {googleSignIn, googleSignOut} from '../../actions/googleAuth/googleAuth'
+import {signIn} from "../../actions";
 import FacebookAuth from "./OAuth/FacebookAuth";
 
 class Auth extends React.Component {
@@ -40,6 +41,7 @@ class Auth extends React.Component {
                     formClasses: this.state.formClasses + ' success'
                 });
 
+                this.props.signIn();
                 localStorage.setItem('token', response.data.token);
                 history.push('/users');
             }
@@ -112,4 +114,4 @@ class Auth extends React.Component {
 
 }
 
-export default connect(null, {signIn, signOut})(Auth);
+export default connect(null, {signIn: signIn, googleSignIn: googleSignIn, googleSignOut: googleSignOut})(Auth);

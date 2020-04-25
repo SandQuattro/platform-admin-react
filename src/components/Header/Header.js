@@ -5,11 +5,13 @@ import {connect} from "react-redux";
 
 const Header = (props) => {
     return (
-        <div className="Header">
-            <Link to="/" className="item">
-                Platform Admin
-            </Link>
-            <div className="right menu">
+        <div className="ui raised segment Header">
+            <div className="ui left floated header">
+                <Link to="/" className="item">
+                    Platform Admin
+                </Link>
+            </div>
+            <div className="ui right floated header">
                 <img alt="avatar" className="ui avatar image" src={props.avatar}/>
                 <span>Username</span>
                 <Link to="/" className="item">
@@ -21,7 +23,6 @@ const Header = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         avatar: state.auth.userLogo
     }

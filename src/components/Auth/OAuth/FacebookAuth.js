@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import FacebookLogin from 'react-facebook-login';
-import {signIn, signOut} from '../../../actions/googleAuth/googleAuth'
+import {googleSignIn, googleSignOut} from '../../../actions/googleAuth/googleAuth'
 
 class FacebookAuth extends React.Component {
 
@@ -73,4 +73,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {signIn, signOut})(FacebookAuth);
+export default connect(mapStateToProps, {signIn: googleSignIn, signOut: googleSignOut})(FacebookAuth);
