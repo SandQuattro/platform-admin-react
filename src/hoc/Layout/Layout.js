@@ -28,9 +28,9 @@ class Layout extends React.Component {
                 <Drawer isOpen={this.state.menu}
                         onClose={this.menuCloseHandler}/>
                 <MenuToggle onToggle={this.toggleMenuHandler} isOpen={this.state.menu}/>
-                <React.Fragment>
+                <>
                     {this.props.children}
-                </React.Fragment>
+                </>
             </div>
         )
     }

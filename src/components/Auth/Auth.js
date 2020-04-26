@@ -4,7 +4,7 @@ import './Auth.css'
 import GoogleAuth from "./OAuth/GoogleAuth";
 import {connect} from 'react-redux'
 import {googleSignIn, googleSignOut} from '../../actions/googleAuth/googleAuth'
-import {signIn} from "../../actions";
+import {signIn} from "../../actions/auth";
 import FacebookAuth from "./OAuth/FacebookAuth";
 
 class Auth extends React.Component {
@@ -41,8 +41,8 @@ class Auth extends React.Component {
                     formClasses: this.state.formClasses + ' success'
                 });
 
-                this.props.signIn(response.data);
                 localStorage.setItem('token', response.data.token);
+                this.props.signIn(response.data);
                 history.push('/users');
             }
         } catch (err) {

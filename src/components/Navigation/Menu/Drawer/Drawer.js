@@ -34,14 +34,14 @@ class Drawer extends Component {
         }
 
         return (
-            <React.Fragment>
+            <>
                 <nav className={cls.join(' ')}>
                     <ul>
                         {this.renderLinks()}
                     </ul>
                 </nav>
                 {this.props.isOpen ? <Dimmer onClick={this.props.onClose}/> : null}
-            </React.Fragment>
+            </>
         )
 
     }

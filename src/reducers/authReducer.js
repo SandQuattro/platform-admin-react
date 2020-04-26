@@ -1,20 +1,30 @@
-import {GOOGLE_SIGN_IN, GOOGLE_SIGN_OUT, SIGN_IN} from '../actions/types';
+import {GOOGLE_SIGN_IN, GOOGLE_SIGN_OUT, SIGN_IN, SIGN_OUT} from '../actions/types';
 
-const INTIAL_STATE = {
+export const INITIAL_STATE = {
     isSignedIn: null,
     userId: null,
-    userLogo: null
+    userLogo: null,
+    token: null
 };
 
-export default (state = INTIAL_STATE, action) => {
+export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SIGN_IN:
-            return { ...state, isSignedIn: true, userId: action.payload.claims.uid, userLogo: action.payload.userLogo };
+            return {
+                ...state,
+                isSignedIn: true,
+                userId: action.payload.claims.uid,
+                userLogo: action.payload.userLogo,
+                token: action.payload.token
+            };
+        case SIGN_OUT:
+            return {...state, ...INITIAL_STATE};
         case GOOGLE_SIGN_IN:
-            return { ...state, isSignedIn: true, userId: action.payload.userId, userLogo: action.payload.userLogo };
+            return {...state, isSignedIn: true, userId: action.payload.userId, userLogo: action.payload.userLogo};
         case GOOGLE_SIGN_OUT:
-            return { ...state, isSignedIn: false, userId: null, userLogo: null };
+            return {...state, ...INITIAL_STATE};
         default:
             return state;
     }
+
 };

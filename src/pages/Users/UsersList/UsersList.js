@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 import {fetchUsers} from "../../../actions/users/userActions";
 import Header from "../../../components/Header/Header";
+import requireAuth from "../../../components/Auth/requireAuth";
 
 class UsersList extends React.Component {
 
@@ -46,18 +47,18 @@ class UsersList extends React.Component {
 
     renderCreateButton = () => {
         return (
-            <React.Fragment>
+            <>
                 <button onClick={() => this.props.history.push("/user/new")}
                         className="ui right floated button primary">Create user
                 </button>
                 <div className=""/>
-            </React.Fragment>
+            </>
         )
     }
 
     renderButtons = (userId) => {
         return (
-            <React.Fragment>
+            <>
                 <td className="center aligned">
                     <button onClick={() => this.props.history.push(`/user/${userId}`)} className="ui icon button">
                         <i className="large green edit icon"/>
@@ -68,14 +69,14 @@ class UsersList extends React.Component {
                         <i className="large red trash icon"/>
                     </button>
                 </td>
-            </React.Fragment>
+            </>
         )
     }
 
     render() {
         return (
             <div>
-                <React.Fragment>
+                <>
                     <Header/>
                     <div className="ui container segment">
                         {this.renderCreateButton()}
@@ -105,7 +106,7 @@ class UsersList extends React.Component {
                         </table>
 
                     </div>
-                </React.Fragment>
+                </>
             </div>
         );
     }
@@ -116,4 +117,4 @@ const mapStateToProps = state => {
     return {users: Object.values(state.users)}
 }
 
-export default connect(mapStateToProps, {fetchUsers})(UsersList);
+export default requireAuth(connect(mapStateToProps, {fetchUsers})(UsersList));
