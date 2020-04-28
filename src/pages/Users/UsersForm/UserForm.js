@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form'
+import history from "../../../utils/history";
 
 class UserForm extends Component {
+
+    componentDidMount() {
+        console.log(this._reactInternalFiber)
+    }
 
     renderInput = ({input, type, label, meta}) => {
         const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
@@ -11,6 +16,20 @@ class UserForm extends Component {
                 <input type={type} {...input} />
                 {this.renderError(meta)}
             </div>
+        )
+    }
+
+    previousPage = (e) => {
+        e.preventDefault();
+        history.goBack();
+    }
+
+    renderButtons = () => {
+        return (
+            <>
+                <button className="ui button primary">Submit</button>
+                <button onClick={(event) => this.previousPage(event)} className="ui button primary">Cancel</button>
+            </>
         )
     }
 
@@ -32,16 +51,17 @@ class UserForm extends Component {
 
     render() {
         return (
+            <>
+                <form className="ui form error" onSubmit={this.props.handleSubmit(this.onSubmit)}>
+                    <Field name="login" component={this.renderInput} label="Логин"/>
+                    <Field name="password" type="password" component={this.renderInput} label="Пароль"/>
+                    <Field name="firstName" component={this.renderInput} label="Имя"/>
+                    <Field name="lastName" component={this.renderInput} label="Фамилия"/>
+                    {this.renderButtons()}
+                </form>
+            </>
+        )
 
-            <form className="ui form error" onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                <Field name="login" component={this.renderInput} label="Логин"/>
-                <Field name="password" type="password" component={this.renderInput} label="Пароль"/>
-                <Field name="firstName" component={this.renderInput} label="Имя"/>
-                <Field name="lastName" component={this.renderInput} label="Фамилия"/>
-                <button className="ui button primary">Submit</button>
-            </form>
-
-        );
     }
 }
 

@@ -10,7 +10,6 @@ class UsersEdit extends Component {
     }
 
     onSubmit = formValues => {
-        console.log(formValues)
         this.props.updateUser(this.props.match.params.id, formValues);
     }
 

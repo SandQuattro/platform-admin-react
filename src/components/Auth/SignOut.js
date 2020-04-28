@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {signOut} from '../../actions/auth';
+import history from "../../utils/history";
 
 class Signout extends Component {
+
     componentDidMount() {
         this.props.signout();
     }
 
     render() {
-        this.props.history.push("/auth")
+        history.push("/signin")
         return (<div/>);
     }
 }

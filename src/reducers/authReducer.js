@@ -3,8 +3,7 @@ import {GOOGLE_SIGN_IN, GOOGLE_SIGN_OUT, SIGN_IN, SIGN_OUT} from '../actions/typ
 export const INITIAL_STATE = {
     isSignedIn: null,
     userId: null,
-    userLogo: null,
-    token: null
+    userLogo: null
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -14,8 +13,7 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 isSignedIn: true,
                 userId: action.payload.claims.uid,
-                userLogo: action.payload.userLogo,
-                token: action.payload.token
+                userLogo: action.payload.userLogo
             };
         case SIGN_OUT:
             return {...state, ...INITIAL_STATE};

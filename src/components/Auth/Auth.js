@@ -23,8 +23,6 @@ class Auth extends React.Component {
         // убираем стандартное поведение сабмита формы, с рефрешем страницы
         event.preventDefault();
 
-        const {history} = this.props;
-
         const raw = "{\"username\":\"" + this.state.login + "\",\"password\":\"" + this.state.password + "\"}";
 
         try {
@@ -43,7 +41,6 @@ class Auth extends React.Component {
 
                 localStorage.setItem('token', response.data.token);
                 this.props.signIn(response.data);
-                history.push('/users');
             }
         } catch (err) {
             console.error(err.response);
@@ -101,7 +98,7 @@ class Auth extends React.Component {
                             <p>{this.state.messageContent}</p>
                         </div>}
 
-                    <button className="ui button" type="submit" onClick={this.authHandler}>Войти</button>
+                    <button className="ui button" type="submit" onClick={this.submitHandler}>Войти</button>
                     <button className="ui button" type="submit"
                             onClick={this.registerHandler}>Зарегистрироваться
                     </button>

@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 class Header extends React.Component {
 
     renderLinks() {
-        if (this.props.auth.token || localStorage.getItem("token")) {
+        if (localStorage.getItem("token")) {
             return (
                 <div>
                     <Link to="/signout">Sign Out</Link>
